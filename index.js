@@ -1,36 +1,16 @@
-const inquirer = require('./inquirer');
-const Employee = require('./lib/Employee')
-
+const GENERATOR = require('./generator');
 
 function init(){
 
-    const QUESTIONS = [
-        {
-            type: 'input',
-            message: 'what is your name?',
-            name: 'name'
+    console.log('index initiazlied');
 
-        }
-    ]
-    }
+    GENERATOR();
 
-inquirer
-.prompt( QUESTIONS )
+    console.log('GENERATOR running');    
 
 
-.then((response) => {
-
-    var people = []
-    var person = new Employee(response.name)
-    people.push(person)
-    return people
-
-});
-
-
-
-
+}
 
 // build HTML first as a template
 
-`the name is ${people[0].person.name}`
+// `the name is ${people[0].person.name}`
