@@ -1,15 +1,21 @@
-const inquirer = require('./inquirer');
+const inquirer = require('inquirer');
 const Employee = require('./lib/Employee');
 
 // run questions set 1
+
+const TeamMembers = [];
 
 // dependant on ROLE response, run either set 2 3 or 4
 
 function questionsFunction(){
 
-function MainQuestions(){    
+    console.log('main func called');
 
-    const QUESTIONS = [
+function MainQuestions(){   
+    
+    const QUESTIONS = 
+
+    [
         {
             type: 'input',
             message: 'What is your name?',
@@ -29,17 +35,18 @@ function MainQuestions(){
 
         },
         {
-            type: 'input',
+            type: 'list',
             message: 'What is your role?',
-            name: 'role'
+            name: 'role',
+            choices:  ['Engineer', 'Manager', 'Intern'],
 
-        }
-    ]
-
+        },
+    ];
+    
     inquirer
     .prompt( QUESTIONS )
-    
-    .then((response) => {
+
+    .then((response => {
     
         if (response.role == 'Engineer'){
             EngineerQuestions();
@@ -49,8 +56,7 @@ function MainQuestions(){
             InterQuestions();
         }
     
-    
-    })
+    }))
     
         .then((response) => {
 
@@ -62,39 +68,44 @@ function MainQuestions(){
     })
 };
 
+MainQuestions();
 
 function EngineerQuestions(){ // Engineer specific question set
     const ENGINEER = [
         {
             type: 'input',
             message: 'What is your gitHub username?',
-            name: 'github'
+            name: 'github',
         }
     ]
 
     inquirer
-    .prompt( QUESTIONS )
+    .prompt( ENGINEER )
     
     .then((engineerResponse) => {
+
+        console.log(engineerResponse);
     
     });
 
 };
-
 
 function ManagerQuestions(){ // Manager specific question set
     const MANAGER = [
         {
             type: 'input',
             message: 'What is your office number?',
-            name: 'office'
+            name: 'office',
         }
     ]
 
     inquirer
-    .prompt( QUESTIONS )
+    .prompt( MANAGER )
     
     .then((managerResponse) => {
+
+        const manager = new Manager (managerResponse.office);
+        TeamMembers.push(manager);
     
     });
 };
@@ -104,21 +115,22 @@ function InterQuestions(){ // Intern specific question set
         {
             type: 'input',
             message: 'What is your school?',
-            name: 'school'
+            name: 'school',
         }
     ]
 
     inquirer
-    .prompt( QUESTIONS )
+    .prompt( INTERN )
     
     .then((internResponse) => {
+
+        console.log(internResponse);
     
     });
 }
 
 };
 
-questionsFunction();
-
+questionsFunction()
 
 module.exports = questionsFunction
