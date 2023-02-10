@@ -52,15 +52,26 @@ function init(){
         .prompt( QUESTIONS )
     
         .then((response => {
-        
-            if (response.role == 'Engineer'){
-                EngineerQuestions();
-            } else if (response.role == 'Manager'){
-                ManagerQuestions();
-            } else if (response.role == 'Intern'){
-                InterQuestions();
+
+            switch (response.role) {
+                case 'Engineer':
+                    EngineerQuestions()
+                    break;
+                case 'Manager':
+                    ManagerQuestions()
+                    break;
+                case 'Intern':
+                    InterQuestions()
+                    break;
             }
         
+            // if (response.role == 'Engineer'){
+            //     EngineerQuestions();
+            // } else if (response.role == 'Manager'){
+            //     ManagerQuestions();
+            // } else if (response.role == 'Intern'){
+            //     InterQuestions();
+            // }
         }))
         
             .then((response) => {
@@ -93,7 +104,6 @@ function init(){
         
         });
 
-        MainQuestions()
     
     };
     
@@ -115,7 +125,6 @@ function init(){
         
         });
 
-        MainQuestions()
     };
     
     function InterQuestions(){ // Intern specific question set
@@ -136,7 +145,6 @@ function init(){
         
         });
 
-        MainQuestions()
     }
     
     };
