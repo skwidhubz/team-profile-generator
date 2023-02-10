@@ -4,12 +4,11 @@ const fs = require('fs');
 const path = require('path');
 
 // Import classes
+const Employee = require('./lib/Employee');
 const Engineer = require('./lib/Engineer');
 const Intern = require('./lib/Intern');
 const Manager = require('./lib/Manager');
 
-// Import Generator 
-const GENERATOR = require('./generator.js');
 
 function init(){
 
@@ -93,6 +92,8 @@ function init(){
             console.log(engineerResponse);
         
         });
+
+        MainQuestions()
     
     };
     
@@ -111,9 +112,10 @@ function init(){
         .then((managerResponse) => {
     
             const manager = new Manager (managerResponse.office);
-            TeamMembers.push(manager);
         
         });
+
+        MainQuestions()
     };
     
     function InterQuestions(){ // Intern specific question set
@@ -133,6 +135,8 @@ function init(){
             console.log(internResponse);
         
         });
+
+        MainQuestions()
     }
     
     };
